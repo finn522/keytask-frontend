@@ -1,0 +1,39 @@
+/* Fonts */
+$mainFont: 'Open Sans Regular', sans-serif;
+$titleFont: 'Open Sans', sans-serif;
+$alternateFont: 'Open Sans', sans-serif;
+
+/* Colors */
+$white: #ffffff;
+$black: #000;
+
+$openTask: #39C022;
+$yourTask: #2F80ED;
+$otherTask: #FFCF3C;
+$failedTask: #EB5757;
+
+
+$success: #41aa41;
+$warning: #ffc831;
+$error: #d41710;
+
+$facebook: #3b5998;
+$twitter: #4099ff;
+
+/* Gradients */
+$bronzeGradient: linear-gradient(90deg, #81050F 0%, #FF0000 100%);
+$silverGradient: linear-gradient(90deg, rgba(0,0,0,0) 50%, $black 100%);
+$goldGradient: linear-gradient(90deg, rgba(0,0,0,0) 50%, $black 100%);
+$platinumGradient: linear-gradient(90deg, rgba(0,0,0,0) 50%, $black 100%);
+
+/* Transitions */
+$basicTransition: cubic-bezier(0.35, 0, 0.65, 1);
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

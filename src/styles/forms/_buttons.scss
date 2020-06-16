@@ -1,0 +1,159 @@
+.btn {
+  padding: 15px 20px;
+  height: 50px;
+  min-height: 50px;
+  position: relative;
+  color: $white;
+  z-index: 1;
+  text-decoration: none;
+  font-size: em(14, 16);
+  font-weight: bold;
+  // display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: 0;
+  min-width: 350px;
+  text-align: center;
+  transition: 0.2s all $basicTransition;
+  backface-visibility: hidden;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include media('<=1024px') {
+    min-width: 320px;
+  }
+  @include media('<=768px') {
+    // min-width: 180px;
+  }
+  &::after {
+    content: '';
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: 0.2s all $basicTransition;
+    // transform: translateY(1.05);
+    background-color: rgba(255, 255, 255, 0);
+  }
+  &:hover {
+    transform: translateY(-2px);
+    &:after {
+      transition: 0.1s all $basicTransition;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+  &:active {
+    transform: translateY(0px);
+    &:after {
+      transition: 0.1s all $basicTransition;
+      // transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.2);
+      top: 0;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.btn .icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+}
+
+.btn span {
+  margin-left: 8px;
+  // min-width: 200px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.btn--icon {
+  min-width: 1px;
+  padding: 0;
+  text-align: center;
+  width: 39px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn--icon .icon {
+  fill: $white;
+  width: 12px;
+}
+
+.btn--inline {
+  display: inline-block;
+}
+.btn--center {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn.is-disabled {
+  background: $hpColor2;
+  cursor: no-drop;
+}
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.btn.btn--color2 {
+  background: $mcdColor2;
+  color: $mcdColor5;
+}
+.btn.btn--color3 {
+  background: $mcdColor3;
+  color: white;
+}
+.btn.btn--color6 {
+  background: $mcdColor6;
+  color: #fff;
+}
+.btn.btn--white {
+  background: white;
+  color: $mcdColor5;
+}
+
+.btn.btn--small {
+  padding: 8px 15px;
+  min-width: 100px;
+}
+.btn.btn--border {
+  border-width: 2px;
+  border-style: solid;
+}
+.btn.btn--border-color-white {
+  border-color: white;
+}
+.btn.btn--border-color-3 {
+  border-color: $mcdColor3;
+  color: $mcdColor3;
+}
+.btn.btn--border-color-5 {
+  border-color: $mcdColor5;
+  color: $mcdColor5;
+}
+.btn.btn--response {
+  display: inline-flex;
+}
+.btn.btn--response div {
+  position: relative;
+  align-self: center;
+}
+.btn.btn--response div span {
+  margin-left: 0;
+}
+
+.btn.btn--loading {
+  pointer-events: none;
+}

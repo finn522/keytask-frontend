@@ -1,0 +1,51 @@
+:local {
+  /* The container */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 21px;
+    background-color: #DDDDDD;
+    border-radius: 20px;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    border: 4px solid #DDDDDD;
+  }
+  
+  .container input:checked ~ .myTask{
+    background-color: #2f80ed;
+}
+.container input:checked ~ .claimedTask{
+    background-color: #ffcf3c;
+}
+.container input:checked ~ .openTask{
+    background-color: #39c022;
+}
+
+}

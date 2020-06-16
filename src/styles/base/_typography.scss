@@ -1,0 +1,102 @@
+/*
+  1. Hier komen de standaard typografie regels
+  2. Denk hierbij aan h1,h2,h3,p etc.
+*/
+body {
+  font-family: $mainFont;
+  font-size: em(18, 18);
+  line-height: 1;
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $titleFont;
+  font-weight: 600;
+}
+h1 {
+  font-size: em(48, 16);
+  line-height: em(20, 16);
+  @media screen and (max-width: 768px) {
+    font-size: em(28, 16);
+  }
+}
+h2 {
+  font-size: em(40, 16);
+  line-height: normal;
+  @media screen and (max-width: 768px) {
+    font-size: em(30, 16);
+  }
+}
+h3 {
+  font-size: em(24, 16);
+  @media screen and (max-width: 768px) {
+    font-size: em(20, 16);
+  }
+}
+h4 {
+  font-size: em(20, 16);
+  font-weight: 500;
+  @media screen and (max-width: 768px) {
+    font-size: em(16, 16);
+  }
+}
+
+// a:not(.btn){
+//   color: $forest;
+//   transition: .2s opacity $basicTransition;
+//   &:hover{
+//     opacity: .8;
+//     color: $forest-light;
+//   }
+//   &:active{
+//     opacity: .8;
+//     color: $forest-dark;
+//   }
+// }
+
+p {
+  font-size: em(20, 16);
+  line-height: 1.5;
+  // letter-spacing: 2px;
+  @media screen and (max-width: 768px) {
+    font-size: em(16, 16);
+    line-height: 1.38;
+    letter-spacing: 1.6px;
+  }
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+
+  letter-spacing: 0;
+}
+
+p a,
+address a {
+  color: white;
+  text-decoration: underline;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: em(16, 16);
+  line-height: em(24, 16);
+}
+
+svg.icon {
+  display: inline-block;
+  // width: 1em;
+  // height: 1em;
+  fill: currentColor;
+}

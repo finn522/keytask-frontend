@@ -1,0 +1,68 @@
+:local{
+    .background{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.5;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9;
+      }
+    
+      .card {
+        position: absolute;;
+        margin-left: auto;
+        margin-right: auto;
+        top: 20px;
+        left: 0;
+        right: 0;
+        width: 425px;
+        height: auto;
+        background-color: white;
+        border-radius: 21px;
+        z-index: 10;
+    
+        .content {
+          padding: 32px 40px 50px 34px;
+          .title {
+            font-family: "Open Sans Bold";
+            font-size: 1.333em;
+            margin-bottom: 9px;
+          }
+          .button{
+            position: absolute;
+            bottom: 0;
+            background-color: #39c022;
+            height: 40px;
+            width: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 300ms ease;
+
+        }
+        .accept{
+            border-radius: 0 0 0 18px;
+         
+            background-color: #39c022;
+            left: 0;
+            &:hover{
+                background-color: #35a322;
+            }
+        }
+        .decline{
+            border-radius: 0 0 18px 0;
+            background-color: #EB5757;
+            right: 0;
+            &:hover{
+                background-color: #b64040;
+            }
+        }
+        }
+    }
+}

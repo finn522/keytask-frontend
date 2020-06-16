@@ -1,0 +1,58 @@
+html {
+  background: #F8F8F8;
+}
+.overflow-visible,
+.overflow-visible > * {
+  overflow: visible !important;
+}
+body {
+  overflow-x: hidden;
+  position: relative;
+  min-width: 680px;
+}
+body.disable-scroll {
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+
+  // position: absolute;
+  // height: 100%;
+  // overflow-x: hidden;
+}
+main.main--top {
+  @media screen and (max-width: 768px) {
+    padding-top: 124px;
+  }
+}
+
+// main > * {
+//   z-index: 2;
+//   position: relative;
+// }
+
+.main {
+  margin-top: 191px;
+  @extend .clearfix;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  @media screen and (max-width: 768px) {
+    margin-top: 106px;
+  }
+}
+.main--page-header {
+  margin-top: -150px;
+}
+.home .main {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.wrapper {
+  margin-left: auto;
+  position: relative;
+  margin-right: auto;
+  width: calc(100% - 57px);
+  max-width: 1326px;
+}
+

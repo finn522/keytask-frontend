@@ -1,0 +1,103 @@
+/*
+  1. Hier zet je je standaard regels voor forms neer
+  2. Ook eventuele hulp-classes voor specifiek forms kun je hier kwijt
+*/
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// input,
+// select {
+//   background: white;
+//   outline: none;
+//   color: #172b48;
+//   width: 100%;
+//   padding-left: 11px;
+//   padding-right: 11px;
+//   font-size: em(20, 16);
+//   font-weight: bold;
+//   transition: outline-offset 0.1s $basicTransition,
+//     border-color 0.2s $basicTransition;
+//   border: 2px solid white;
+//   height: 50px;
+//   min-height: 50px;
+//   border-radius: 0;
+//   @media screen and (max-width: 768px) {
+//     font-size: 1.25em;
+//   }
+//   &:focus {
+//     border-color: rgba(255, 255, 255, 0.7);
+//   }
+//   outline: 1px solid white;
+//   outline-offset: -1px;
+//   &:focus {
+//     outline: 3px solid white;
+//     outline-offset: -3px;
+//   }
+//   &::placeholder {
+//     color: #172b48;
+//   }
+//   &:disabled {
+//     background: rgba(255, 255, 255, 0.2);
+//   }
+// }
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #172b48;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset;
+  transition: background-color 5000s ease-in-out 0s,
+    outline-offset 0.1s $basicTransition, border-color 0.2s $basicTransition;
+}
+input {
+  @media screen and (max-width: 768px) {
+    -webkit-appearance: none;
+  }
+}
+textarea {
+  outline: none;
+  border-width: 2px;
+  border-style: solid;
+  background: white;
+  padding: 14px 11px;
+  color: black;
+  // &::placeholder {
+  //   opacity: 
+  // }
+}
+
+input.is-invalid,
+textarea.is-invalid {
+  border-color: $error;
+}
+input.is-valid,
+textarea.is-valid {
+  border-color: $success;
+  outline: 1px solid$success;
+}
+
+select {
+  // opacity: 0;
+  z-index: 2;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 0;
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  height: 44px;
+}
+
+label {
+  cursor: pointer;
+}
+
+// VALIDATION
+input.is-incorrect,
+textarea.is-incorrect {
+  border-color: #ef413d;
+  outline-color: #ef413d;
+}

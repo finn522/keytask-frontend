@@ -1,0 +1,121 @@
+.custom-radio {
+  position: relative;
+
+  /*circle*/
+  &:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    border: 1px solid #555555;
+    background: $white;
+    margin-right: 5px;
+    display: block;
+  }
+
+  /*check*/
+  &:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: #555555;
+    left: 3px;
+    top: 3px;
+    position: absolute;
+    display: none;
+  }
+
+  &.is-active:after {
+    display: block;
+  }
+}
+
+.form-item--checkbox {
+  position: relative;
+  cursor: pointer;
+
+  /*circle*/
+  &:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    // border: 2px solid $black;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    margin: 4px 0;
+    margin-right: 10px;
+    transition: border 0.2s $basicTransition;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+  }
+
+  /*check*/
+  &:after {
+    content: '';
+    // background-image: url("../../../public/icons/SVG/checkbox.svg");
+    width: 13px;
+    height: 10px;
+    background-size: 13px;
+    background-repeat: no-repeat;
+    left: 5px;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    position: absolute;
+    display: none;
+  }
+
+  &.is-active:after {
+    display: block;
+  }
+  input {
+    visibility: hidden;
+    display: none;
+  }
+}
+.custom-checkbox:hover,
+.custom-checkbox:focus {
+  &:before {
+    border-color: #a1a1a1;
+  }
+}
+.custom-checkbox__text {
+  margin-left: 5px;
+  line-height: 1;
+  flex: 1;
+}
+
+/*custom select*/
+.mock-select {
+  border: 1px solid #dddddd;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  select {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    appearance: menulist-button;
+    cursor: pointer;
+  }
+}
+.mock-select__text {
+  font-size: em(18, 16);
+  position: relative;
+  z-index: 1;
+}
+
+.mock-select__icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
