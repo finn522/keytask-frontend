@@ -1,5 +1,5 @@
 export const fetchTasks = async () => {
-  return fetch("http://192.168.178.45:3001/tasks")
+  return fetch("https://keytask.keytoe.nl/keytask_backend/tasks")
       .then(function(result){
       if(!result.ok){
        alert("Er is iets fout gegaan. Zie de console log voor meer info.\nHTTP status " + result.status);
@@ -15,7 +15,7 @@ export const fetchTasks = async () => {
 };
 
 export const fetchTasksFilters = async ( user, myTask, claimedTask, openTask ) => {
-  return fetch("http://192.168.178.45:3001/tasks" , {
+  return fetch("https://keytask.keytoe.nl/keytask_backend/tasks" , {
     method: "POST",
     headers: {
     'Content-type': 'application/json'
@@ -37,7 +37,7 @@ export const fetchTasksFilters = async ( user, myTask, claimedTask, openTask ) =
 }
 
 export const deleteTask = async (task_id) => {
-  return fetch('http://192.168.178.45:3001/delete-task' , {
+  return fetch('https://keytask.keytoe.nl/keytask_backend/delete-task' , {
     method: "DELETE",
     headers: {
     'Content-type': 'application/json'
@@ -54,7 +54,7 @@ export const deleteTask = async (task_id) => {
 };
 
 export const claimTask = (task_id, user_id) => {
-  return fetch("http://192.168.178.45:3001/tasks/"+ task_id, {
+  return fetch("https://keytask.keytoe.nl/keytask_backend/tasks/"+ task_id, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
@@ -73,7 +73,7 @@ export const claimTask = (task_id, user_id) => {
   }
 
   export const finishTask = (task_id, user_id) => {
-    return fetch("http://192.168.178.45:3001/users/"+ user_id, {
+    return fetch("https://keytask.keytoe.nl/keytask_backend/users/"+ user_id, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -93,7 +93,7 @@ export const claimTask = (task_id, user_id) => {
   }
 
   export const postTask = (data) => {
-    return fetch("http://192.168.178.45:3001/insert-task", {
+    return fetch("https://keytask.keytoe.nl/keytask_backend/insert-task", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -112,7 +112,7 @@ export const claimTask = (task_id, user_id) => {
   }
 
   export const updateTask = (data) => {
-    return fetch("http://192.168.178.45:3001/update-task/"+ data.id, {
+    return fetch("https://keytask.keytoe.nl/keytask_backend/update-task/"+ data.id, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
