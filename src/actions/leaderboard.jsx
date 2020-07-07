@@ -1,5 +1,5 @@
 export const fetchUsersRankedPoints = async () => {
-    return fetch("https://keytask.keytoe.nl/keytask_backend/users-ranked-points")
+    return fetch(`${process.env.REACT_APP_API_URL}/users-ranked-points`)
     .then(function(result){
       if(!result.ok){
        alert("Er is iets fout gegaan. Zie de console log voor meer info.\nHTTP status " + result.status);
@@ -12,7 +12,7 @@ export const fetchUsersRankedPoints = async () => {
   };
 
   export const fetchUsersRankedTasks = async () => {
-    return fetch("https://keytask.keytoe.nl/keytask_backend/users-ranked-tasks")
+    return fetch(`${process.env.REACT_APP_API_URL}/users-ranked-tasks`)
     .then(function(result){
       if(!result.ok){
        alert("Er is iets fout gegaan. Zie de console log voor meer info.\nHTTP status " + result.status);

@@ -1,0 +1,124 @@
+:local {
+    .list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 312px);
+      grid-gap: 1rem;
+      justify-content: space-between;
+    }
+    /* The container */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 28px;
+      margin-right: 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+  
+    /* Hide the browser's default checkbox */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+  
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 21px;
+      width: 21px;
+      background-color: #dddddd;
+      border-radius: 20px;
+    }
+  
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      border: 4px solid #dddddd;
+    }
+  
+    .container input:checked ~ .myTask {
+      background-color: #2f80ed;
+    }
+    .container input:checked ~ .claimedTask {
+      background-color: #ffcf3c;
+    }
+    .container input:checked ~ .openTask {
+      background-color: #39c022;
+    }
+    .filterAndSort {
+      display: flex;
+      justify-content: space-between;
+      margin: 35px 0;
+      .filterList {
+        display: flex;
+      }
+    }
+  
+    .dropdown {
+      position: relative;
+      display: inline-flex;
+      width: 134px;
+      z-index: 1;
+      justify-content: flex-end;
+      margin-right: 7px;
+      padding-right: 5px;
+      cursor: pointer;
+    }
+  
+    .controldropdown {
+      position: relative;
+      padding-right: 5px;
+    }
+  
+    .menudropdown {
+      width: 100%;
+      background-color: #f8f8f8;
+      color: black;
+      position: absolute;
+      padding: 5px;
+      padding-bottom: 0;
+      margin-top: 18px;
+    }
+  
+    .dropdownoption {
+      width: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .scrollToButton{
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background-color: gray;
+      opacity: 0.8;
+      z-index: 8;
+      right: 28px;
+      border-radius: 13px;
+      border: none;
+      transition: background-color 300ms ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      path{
+        fill: white;
+      }
+      &:hover{
+        background-color: rgb(94, 86, 86);
+      }
+    }
+    .scrollToTop{
+      top: calc(50vh - 60px)
+    }
+    .scrollToBottom{
+      bottom: calc(50vh - 60px)
+    }
+  }
+  

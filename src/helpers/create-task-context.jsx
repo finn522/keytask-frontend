@@ -17,7 +17,7 @@ function CreateTaskProvider(props) {
   const [state, setState] = React.useReducer(reducer, {
       title: "",
       customer: "",
-      priority: 1,
+      priority: "1",
       deadline: true,
       deadline_date: (new Date()).toLocaleDateString('en-GB').replace(/\//g,'-'),
       creator: "",
@@ -35,7 +35,7 @@ function ResetCreateTask(setState){
   setState({
     title: "",
     customer: "",
-    priority: 1,
+    priority: "1",
     deadline: true,
     deadline_date: (new Date()).toLocaleDateString('en-GB').replace(/\//g,'-'),
     creator: "",

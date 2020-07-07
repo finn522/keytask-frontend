@@ -37,7 +37,12 @@
 
         a{
           text-decoration: underline;
-          color: #1EA1EB;
+          color: #1ea1eb;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+          white-space: nowrap;
+          display: block;
         }
       }
       .top {

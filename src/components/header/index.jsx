@@ -41,6 +41,7 @@ function Header(props) {
                 {/* <Link to="/Achievements">Achievements</Link> */}
                 {/* <Link to="/Statistieken">Statistieken</Link>   */}
                 <NavLink activeClassName={styles.activeLink} to="/Leaderboard">Leaderboard</NavLink>
+                <NavLink activeClassName={styles.activeLink} to="/Archief">Archief</NavLink>
               </div>
 
               <div className={styles.user}>

@@ -53,9 +53,9 @@ function validateForm(data, setErrors) {
     formIsValid = false;
     errors.reward = "*Beloning moet nummer zijn.";
   }
-  if (data.reward > 6000) {
+  if (data.reward > 1500) {
     formIsValid = false;
-    errors.reward = "*Beloning is max 6000.";
+    errors.reward = "*Beloning is max 1500.";
   }
 
   //Creator

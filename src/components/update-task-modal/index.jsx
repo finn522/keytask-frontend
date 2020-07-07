@@ -68,35 +68,35 @@ function UpdateTaskModal(props) {
     let modifier = 0;
     switch (priority) {
       case "1":
-        modifier = 0.5;
+        modifier = 0.25;
         break;
       case 1:
-        modifier = 0.5;
+        modifier = 0.25;
         break;
       case "2":
-        modifier = 1;
+        modifier = 0.5;
         break;
       case 2:
-        modifier = 1;
+        modifier = 0.5;
         break;
       case "3":
-        modifier = 2;
+        modifier = 0.75;
         break;
       case 3:
-        modifier = 2;
+        modifier = 0.75;
         break;
       case "4":
-        modifier = 3;
+        modifier = 1;
         break;
       case 4:
-        modifier = 3;
+        modifier = 1;
         break;
       default:
         modifier = 0;
         break;
     }
     if (deadline === true || deadline === 1) {
-      let deadlineModifier = 3;
+      let deadlineModifier = 0.5;
       let currentDate = new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
@@ -120,7 +120,7 @@ function UpdateTaskModal(props) {
       let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
       for (let i = Difference_In_Days; i > 0; i--) {
         if (deadlineModifier > 0.1) {
-          deadlineModifier = deadlineModifier - 0.1;
+          deadlineModifier = deadlineModifier - 0.05;
         }
       }
       modifier += deadlineModifier;

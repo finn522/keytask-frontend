@@ -10,6 +10,7 @@ import Achievements from 'pages/achievements';
 import Statistics from 'pages/statistics';
 import Leaderboard from 'pages/leaderboard';
 import Login from 'pages/login';
+import Archive from 'pages/archive';
 
 const App = () => (
 <div>
@@ -20,6 +21,7 @@ const App = () => (
       <PrivateRoute path="/achievements" component={Achievements} />
       <PrivateRoute path="/statistieken" component={Statistics} />
       <PrivateRoute path="/leaderboard" component={Leaderboard} />
+      <PrivateRoute path="/archief" component={Archive} />
       <Route path="/login" component={Login} />
     </Switch>
   </main>

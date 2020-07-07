@@ -45,34 +45,32 @@ function CreateTaskModal(props) {
   };
   useEffect(() => {
     calculatePoints(deadline_date);
-  }, [priority, deadline_date, deadline]);
-  useEffect(() => {
     if (custom_reward === false) {
-      calculatePoints(deadline_date)
-    }
-  }, [custom_reward]);
+      SaveCreateTasks("reward", autoReward, setCreateTask);
+  }
+  }, [autoReward, custom_reward, priority, deadline, deadline_date ]);
 
   function calculatePoints(value) {
     let modifier = 0;
     switch (priority) {
       case "1":
-        modifier = 0.5;
+        modifier = 0.25;
         break;
       case "2":
-        modifier = 1;
+        modifier = 0.5;
         break;
       case "3":
-        modifier = 2;
+        modifier = 0.75;
         break;
       case "4":
-        modifier = 3;
+        modifier = 1;
         break;
       default:
         modifier = 0;
         break;
     }
     if (deadline === true) {
-      let deadlineModifier = 3;
+      let deadlineModifier = 0.5;
       let currentDate = new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
@@ -89,16 +87,13 @@ function CreateTaskModal(props) {
         deadlineDateObject.getTime() - currentDate.getTime();
       let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
       for (let i = Difference_In_Days; i > 0; i--) {
-        if (deadlineModifier > 0.1) {
-          deadlineModifier = deadlineModifier - 0.1;
+        if (deadlineModifier > 0.05) {
+          deadlineModifier = deadlineModifier - 0.05;
         }
       }
       modifier += deadlineModifier;
     }
     setAutoReward(Math.ceil(1000 * modifier));
-    if (custom_reward === false) {
-      SaveCreateTasks("reward", autoReward, setCreateTask);
-    }
   }
   function toggleCalender() {
     setShowCalender(!showCalender);
@@ -189,7 +184,7 @@ function CreateTaskModal(props) {
                     type="radio"
                     name="priority"
                     value="1"
-                    defaultChecked={priority === 1}
+                    defaultChecked={priority === "1"}
                   />
                   <span className={styles.checkmark}></span>
                 </label>

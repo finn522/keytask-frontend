@@ -164,9 +164,11 @@ function Task(props) {
                 <li>{task.task_description}</li>
               )}
               <li className={styles.edit}>
-                <span className={styles.bewerken} onClick={toggleUpdateModal}>
-                  Bewerken
-                </span>
+                {task.task_status !== "Archived" ? (
+                  <span className={styles.bewerken} onClick={toggleUpdateModal}>
+                    Bewerken
+                  </span>
+                ) : null}
                 <span
                   className={styles.verwijderen}
                   onClick={toggleDeleteModal}
@@ -181,16 +183,23 @@ function Task(props) {
                 </div>
                 {task.task_claimant ? (
                   <span>
-                    <span style={{ fontFamily: "Open Sans Bold" }}>
+                    {task.task_status !== "Archived" ? <span style={{ fontFamily: "Open Sans Bold" }}>
                       Geclaimd door
-                    </span>
+                    </span> : <span style={{ fontFamily: "Open Sans Bold" }}>
+                     Afgerond door
+                    </span>}
                     <br />
                     {task.task_claimant}
+                    {task.task_status !== "Archived" ? 
+                   null :  (<div>op <b>{setDate(task.task_finished)}</b></div>)}
                   </span>
                 ) : null}
               </li>
             </ul>
-            {(user_name === task.task_claimant || task.task_claimant === null) && user_name !== "Keytoe" ? (
+            {(user_name === task.task_claimant ||
+              task.task_claimant === null) &&
+            user_name !== "Keytoe" &&
+            task.task_status !== "Archived" ? (
               <div
                 onClick={handleClick}
                 className={[
@@ -233,13 +242,15 @@ function Task(props) {
           ) : null}
         </div>
       </div>
-      <CreateTaskProvider>
-        <UpdateTaskModal
-          show={showUpdateModal}
-          onClose={toggleUpdateModal}
-          values={task}
-        />
-      </CreateTaskProvider>
+      {task.task_status !== "Archived" ? (
+        <CreateTaskProvider>
+          <UpdateTaskModal
+            show={showUpdateModal}
+            onClose={toggleUpdateModal}
+            values={task}
+          />
+        </CreateTaskProvider>
+      ) : null}
       <DeleteTaskModal
         show={showDeleteModal}
         onClose={toggleDeleteModal}

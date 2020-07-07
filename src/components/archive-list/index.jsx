@@ -16,7 +16,7 @@ import { Sort } from "icons/sort";
 import {PriorityLow} from "icons/priority-low"
 import { PriorityHigh } from "icons/priority-high"
 
-function TaskList(props) {
+function ArchiveList(props) {
   var arraySort = require("array-sort");
   const [{ tasks, filteredTasks }, setTasks] = useTask();
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -57,9 +57,6 @@ function TaskList(props) {
   function _onSelect(option) {
     setSelected(option);
   }
-  function toggleModal() {
-    setShowCreateModal(!showCreateModal);
-  }
   function filter(tasks) {
     if (myTask && tasks.task_claimant === user.user_name) {
       return tasks.task_claimant === user.user_name;
@@ -97,8 +94,6 @@ function TaskList(props) {
       value = !myTask;
     } else if (inputName === "claimedTask") {
       value = !claimedTask;
-    } else {
-      value = !openTask;
     }
     changeInput(inputName, setFilter, value);
   }
@@ -134,7 +129,6 @@ function TaskList(props) {
   }
   return (
     <>
-
     <div className={[styles.scrollToButton, styles.scrollToTop].join(" ")} onClick={scrollToTop}><PriorityHigh /></div>
     <div className={[styles.scrollToButton, styles.scrollToBottom].join(" ")} onClick={scrollToBottom}><PriorityLow /></div>
       <div className={styles.filterAndSort}>
@@ -162,19 +156,6 @@ function TaskList(props) {
             />
             <span
               className={[styles.checkmark, styles.claimedTask].join(" ")}
-            ></span>
-          </label>
-
-          <label className={styles.container}>
-            Open taken
-            <input
-              name="openTask"
-              onChange={onChange}
-              type="checkbox"
-              checked={openTask}
-            />
-            <span
-              className={[styles.checkmark, styles.openTask].join(" ")}
             ></span>
           </label>
         </div>
@@ -205,18 +186,14 @@ function TaskList(props) {
         </div>
       </div>
       <div className={styles.list}>
-        {!filteredTasks
+      {!filteredTasks
           ? null
           : filteredTasks.map((task, i) =>
-          task.task_status !== "Archived" ? 
+          task.task_status === "Archived" ? 
           <Task key={i} task={task} /> : null)}
-        <CreateTask onClick={toggleModal.bind(this)} />
       </div>
-      <CreateTaskProvider>
-        <CreateTaskModal show={showCreateModal} onClose={toggleModal} />
-      </CreateTaskProvider>
     </>
   );
 }
 
-export default TaskList;
+export default ArchiveList;
