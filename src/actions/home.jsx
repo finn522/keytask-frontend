@@ -184,3 +184,22 @@ export const changeStatusTask = async (task_id) => {
       console.log(info);
     });
 };
+
+export const fetchTestResult = async (task_id) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/test-result/` + task_id)
+    .then(function (result) {
+      if (!result.ok) {
+        alert(
+          "Er is iets fout gegaan. Zie de console log voor meer info.\nHTTP status " +
+            result.status
+        );
+      }
+      return result.json();
+    })
+    .then((result) => {
+      return result;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};

@@ -155,12 +155,13 @@ function UpdateTaskModal(props) {
     date = date.toLocaleDateString("en-GB").replace(/\//g, "-");
     SaveCreateTasks("deadline_date", setDate(date), setCreateTask);
   }
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
-    if (validateForm(data).formIsValid === true) {
-      updateTask(data).then(closeModal).then(() => SaveTasks(setSaveTasks));
+    let validateFormResult = await validateForm("update", data);
+    if (validateFormResult.formIsValid === false) {
+      setErrors(validateFormResult.errors);
     } else {
-      setErrors(validateForm(data).errors);
+      updateTask(data).then(closeModal).then(() => SaveTasks(setSaveTasks));
     }
   }
   function closeModal(e) {

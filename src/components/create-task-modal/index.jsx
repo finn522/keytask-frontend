@@ -1,7 +1,11 @@
 //Core
 import React, { useState, useEffect } from "react";
 import { useTask, SaveTasks } from "helpers/task-context";
-import { SaveCreateTasks, useCreateTask, ResetCreateTask } from "helpers/create-task-context";
+import {
+  SaveCreateTasks,
+  useCreateTask,
+  ResetCreateTask,
+} from "helpers/create-task-context";
 import { postTask } from "actions/home";
 import { validateForm } from "helpers/validate-form";
 //Components
@@ -47,8 +51,8 @@ function CreateTaskModal(props) {
     calculatePoints(deadline_date);
     if (custom_reward === false) {
       SaveCreateTasks("reward", autoReward, setCreateTask);
-  }
-  }, [autoReward, custom_reward, priority, deadline, deadline_date ]);
+    }
+  }, [autoReward, custom_reward, priority, deadline, deadline_date]);
 
   function calculatePoints(value) {
     let modifier = 0;
@@ -116,18 +120,21 @@ function CreateTaskModal(props) {
     SaveCreateTasks("deadline_date", date, setCreateTask);
   }
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
-    if (validateForm(data).formIsValid === true) {
-      postTask(data).then(closeModal).then(() => SaveTasks(setSaveTasks));
-      ResetCreateTask(setCreateTask)
+    let validateFormResult = await validateForm("create", data);
+    if (validateFormResult.formIsValid === false) {
+      setErrors(validateFormResult.errors);
     } else {
-      setErrors(validateForm(data).errors);
+      postTask(data)
+        .then(closeModal)
+        .then(() => SaveTasks(setSaveTasks));
+      ResetCreateTask(setCreateTask);
     }
   }
   function closeModal(e) {
     setErrors({});
-    ResetCreateTask(setCreateTask)
+    ResetCreateTask(setCreateTask);
     props.onClose();
   }
   if (!props.show) {
@@ -321,18 +328,21 @@ function CreateTaskModal(props) {
             {/* Beloning invullen */}
             {custom_reward === true ? (
               <>
-              <input
-                onChange={onChange}
-                type="text"
-                placeholder="Beloning"
-                name="reward"
-                autoComplete="off"
-              />
-              <span className={styles.errorMsg}>{errors.reward}</span>
+                <input
+                  onChange={onChange}
+                  type="text"
+                  placeholder="Beloning"
+                  name="reward"
+                  autoComplete="off"
+                />
+                <span className={styles.errorMsg}>{errors.reward}</span>
               </>
             ) : (
-              <div className={styles.autoReward}>{autoReward}<span className={styles.xp}>xp</span></div>
-            )}         
+              <div className={styles.autoReward}>
+                {autoReward}
+                <span className={styles.xp}>xp</span>
+              </div>
+            )}
             {/* Naam aanmaker */}
             <input
               onChange={onChange}

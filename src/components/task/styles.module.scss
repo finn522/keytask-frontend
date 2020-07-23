@@ -33,6 +33,7 @@
         margin-bottom: 16px;
         &:nth-of-type(6){
           margin-bottom: 8px;
+          white-space: normal;
         }
 
         a{
@@ -118,6 +119,20 @@
     position: relative;
     top: 0;
     border-radius: 18px 18px 0 0;
+  }
+  .borderTest{
+    background-color: #EB5757;
+    color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease;
+    cursor: pointer;
+    &:hover{
+      height: 50px;
+      color: rgb(255, 255, 255);
+      background-color: #c22b2b;
+    }
   }
   .borderBottom {
     width: 100%;

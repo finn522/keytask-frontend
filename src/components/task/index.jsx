@@ -1,11 +1,12 @@
 //Core
-import React, { useState } from "react";
-import { claimTask, finishTask } from "actions/home";
+import React, { useState, useEffect } from "react";
+import { claimTask, finishTask, fetchTestResult } from "actions/home";
 import { useAuth } from "helpers/auth-context";
 import { useTask, SaveTasks } from "helpers/task-context";
 import { CreateTaskProvider } from "helpers/create-task-context";
 //Components
 import UpdateTaskModal from "components/update-task-modal";
+import TestResultModal from "components/test-result-modal";
 import DeleteTaskModal from "components/delete-task-modal";
 import moment from "moment";
 import "moment/locale/nl";
@@ -23,9 +24,11 @@ import { PriorityCritical } from "icons/priority-critical";
 
 function Task(props) {
   const [{}, setSaveTasks] = useTask();
+  const [testResults, setTestResults] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [{ user }] = useAuth();
   const { user_id, user_name } = user;
+  const [showTestResultModal, setShowTestResultModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   function classNameBorders(status) {
@@ -40,6 +43,17 @@ function Task(props) {
       result.push(styles[`border--open`]);
     }
     return result.join(" ");
+  }
+  useEffect(() => {
+    getTestResults();
+  }, []);
+
+  function getTestResults() {
+    fetchTestResult(task.task_id).then((response) =>
+      response.length === 0
+        ? setTestResults(false)
+        : setTestResults(response[0].test_results)
+    );
   }
 
   function handleClick() {
@@ -62,6 +76,9 @@ function Task(props) {
     }
   }
 
+  function toggleTestResultModal() {
+    setShowTestResultModal(!showTestResultModal);
+  }
   function toggleUpdateModal() {
     setShowUpdateModal(!showUpdateModal);
   }
@@ -94,12 +111,22 @@ function Task(props) {
           }
         >
           <div className={styles.cardFace}>
-            <div
-              className={[
-                classNameBorders(task.task_claimant),
-                styles.borderTop,
-              ].join(" ")}
-            />
+            {testResults ? (
+              <div
+                onClick={toggleTestResultModal}
+                className={[styles.borderTest, styles.borderTop].join(" ")}
+              >
+                Test resultaten
+              </div>
+            ) : (
+              <div
+                className={[
+                  classNameBorders(task.task_claimant),
+                  styles.borderTop,
+                ].join(" ")}
+              />
+            )}
+
             <ul className={styles.content}>
               <li className={styles.top}>
                 <span className={styles.title}>{task.task_title}</span>
@@ -183,15 +210,22 @@ function Task(props) {
                 </div>
                 {task.task_claimant ? (
                   <span>
-                    {task.task_status !== "Archived" ? <span style={{ fontFamily: "Open Sans Bold" }}>
-                      Geclaimd door
-                    </span> : <span style={{ fontFamily: "Open Sans Bold" }}>
-                     Afgerond door
-                    </span>}
+                    {task.task_status !== "Archived" ? (
+                      <span style={{ fontFamily: "Open Sans Bold" }}>
+                        Geclaimd door
+                      </span>
+                    ) : (
+                      <span style={{ fontFamily: "Open Sans Bold" }}>
+                        Afgerond door
+                      </span>
+                    )}
                     <br />
                     {task.task_claimant}
-                    {task.task_status !== "Archived" ? 
-                   null :  (<div>op <b>{setDate(task.task_finished)}</b></div>)}
+                    {task.task_status !== "Archived" ? null : (
+                      <div>
+                        op <b>{setDate(task.task_finished)}</b>
+                      </div>
+                    )}
                   </span>
                 ) : null}
               </li>
@@ -207,7 +241,7 @@ function Task(props) {
                   styles.borderBottom,
                 ].join(" ")}
               >
-                {buttonText}{" "}
+                {buttonText}
               </div>
             ) : (
               <div
@@ -256,6 +290,13 @@ function Task(props) {
         onClose={toggleDeleteModal}
         values={task}
       />
+      {testResults ? (
+        <TestResultModal
+          show={showTestResultModal}
+          onClose={toggleTestResultModal}
+          values={testResults}
+        />
+      ) : null}
     </>
   );
 }

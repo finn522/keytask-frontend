@@ -1,12 +1,26 @@
-function validateForm(data, setErrors) {
+import { fetchTasksTitles } from "actions/validation";
+
+async function validateForm(command, data) {
   let errors = {};
   let formIsValid = true;
   let regNum = new RegExp("^[0-9]+$");
+  let existingTitles = [];
+  await fetchTasksTitles()
+    .then((result) => result)
+    .then((result) =>
+      result.forEach((element) => existingTitles.push(element.task_title))
+    );
 
   //Title
   if (!data.title) {
     formIsValid = false;
     errors.title = "*Titel is verplicht.";
+  }
+  if (command === "create"){
+    if (existingTitles.includes(data.title)) {
+      formIsValid = false;
+      errors.title = "*Deze titel bestaat al.";
+    }
   }
   if (data.title.length > 50) {
     formIsValid = false;

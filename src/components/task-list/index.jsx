@@ -134,7 +134,6 @@ function TaskList(props) {
   }
   return (
     <>
-
     <div className={[styles.scrollToButton, styles.scrollToTop].join(" ")} onClick={scrollToTop}><PriorityHigh /></div>
     <div className={[styles.scrollToButton, styles.scrollToBottom].join(" ")} onClick={scrollToBottom}><PriorityLow /></div>
       <div className={styles.filterAndSort}>

@@ -3,11 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useFilter, changeInput } from "helpers/filter-context";
 import { useAuth } from "helpers/auth-context";
 import { useTask, SaveTasks, SaveFilteredTasks } from "helpers/task-context";
-import { CreateTaskProvider } from "helpers/create-task-context";
 //Components
 import Task from "components/task";
-import CreateTask from "components/create-task";
-import CreateTaskModal from "components/create-task-modal";
 import Dropdown from "react-dropdown";
 //Styles
 import styles from "./styles.module.scss";
@@ -19,7 +16,6 @@ import { PriorityHigh } from "icons/priority-high"
 function ArchiveList(props) {
   var arraySort = require("array-sort");
   const [{ tasks, filteredTasks }, setTasks] = useTask();
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const [{ myTask, claimedTask, openTask }, setFilter] = useFilter();
   const [{ user }] = useAuth();
   const [selected, setSelected] = useState(null);
